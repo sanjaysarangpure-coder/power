@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.w3schools.com/w3css/tryw3css_templates_analytics.htm -->
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Virtual Lab</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./test1_files/w3.css">
+<link rel="stylesheet" href="./test1_files/css/css.css">
+<link rel="stylesheet" href="./test1_files/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <SCRIPT language="javascript">   
+</SCRIPT>
+<script type="text/javascript">
+  </script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<style>
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 50px;
+  
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+ 
+}
+.center{
+  display: block;
+ margin-left: auto;
+    margin-right: auto;
+
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(40px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+div.w3-panel {
+  display: none;
+}
+.light {
+  background-color: white;
+}
+.light:hover{
+  background-color: blue;
+}
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  
+</style>
+</head>
+<body class="w3-light-grey" onload='onloadnew()'>
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> &nbsp;Menu</button>
+  <span class="w3-bar-item w3-right">
+    <a href="https://iotgpgondia.000webhostapp.com/power/test1.php"><img src="./test1_files/logo2.jpg" class="w3-circle w3-margin-right" style="width:46px"></a>
+  <a href="https://gpgondia.ac.in/"><img src="./test1_files/logo.png" class="w3-circle w3-margin-right" style="width:46px"></a></span>
+  <div class="w3-col s4 w3-right">
+      
+    </div>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container "> 
+  <div class="w3-col s4">
+      <img src="./test1_files/logo2.jpg" class="w3-circle w3-margin-right" style="width:46px">
+    </div>
+  </div>
+  <hr>
+  <a  class="w3-bar-item w3-button"  href="https://iotgpgondia.000webhostapp.com/power/test1.php"><i class="fa fa-home"></i><span><strong>Home</strong></span></a> 
+  <hr>
+  <div class="w3-container ">    
+    <div class="w3-col s8 w3-bar" id="menu_user_edit_logout" >
+        
+                    <a  class="w3-bar-item w3-button"><span><strong>Virtual Lab Menu</strong></span></a>
+
+      <a  class="w3-bar-item w3-button" onclick="theory_page()"><i class="fa fa-table"></i><span><strong>Theory</strong></a>
+      <a  class="w3-bar-item w3-button" onclick="component_page()"><i class="fa fa-microchip"></i><span><strong>Component</strong></a>
+      <a  class="w3-bar-item w3-button" onclick="circuit_page()"><i class="fa fa-tasks"></i><span><strong>Procedure</strong></a>
+      <a  class="w3-bar-item w3-button" onclick="simulation_page()"><i class="fa fa-laptop"></i><span><strong>Simulation</strong></a>
+    
+    </div>
+  </div>
+  <hr>    
+</nav>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div  class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->  
+  <hr>
+  <hr>
+  <hr>
+  <div id="dashboard" style="display: none;" class="w3-container">
+    <h3>Dashboard</h3>
+    <div class="w3-container w3-dark-grey w3-padding-32">
+      
+    <div class="w3-row w3-padding-16">
+    <div id="switch_d" style="display: none;" style="margin: auto;width:280px; height: 250px;" class="w3-container w3-third">
+    <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+        <img src="./test1_files/toggle.png" class="w3-left  w3-margin-right" style="width:35px" >
+        <span class="w3-xlarge">Switch</span>
+        <img src="./test1_files/cross.jpg" class="w3-right w3-circle w3-margin-right" style="width:35px" onclick="switch_cancle()">
+        <br>
+        <div style="margin: auto;width:280px;  text-align: center;">
+        <label class="switch" >
+         <input  type="checkbox" class="center" onclick="toggle()">
+         <span class="slider round"></span>
+
+        </label>
+        <div id="switch_state" style="margin: auto;text-align: center;">OFF</div>
+      </div >
+      </li>    
+      </ul>
+    </div>
+
+    <div id="gauge_d" style="display: none;" class="w3-container w3-third">
+    <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+        <img src="./test1_files/gauge.png" class="w3-left  w3-margin-right" style="width:35px" >
+           <span class="w3-xlarge">Gauge</span>
+        <img src="./test1_files/cross.jpg" class="w3-right w3-circle w3-margin-right" style="width:35px" onclick="gauge_cancle()">
+        <br>
+        <div id="gauge_div"  style="width:200px;width:200px;margin: auto;text-align: center;"></div>
+      </li>    
+</ul>
+</div>
+
+<div id="temp_d" style="display: none;" class="w3-container w3-third">
+    <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+        <img src="./test1_files/prog.png" class="w3-left  w3-margin-right" style="width:35px" >
+        <span class="w3-xlarge">Progress Bar</span>
+        <img src="./test1_files/cross.jpg" class="w3-right w3-circle w3-margin-right" style="width:35px" onclick="temp_cancle()">
+        <br>
+
+        <div class="container">
+          <div class="progress">
+           <div id="temperature_d" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="3" style="width:90.55%"></div>
+          </div>
+        </div>
+        
+    <div id="temp_val" style="margin: auto;text-align: center;">90.55</div>
+      </li>    
+</ul>
+</div>
+</div>
+
+  </div>
+</div>
+  <hr>
+<div>
+  <div id="theory_page" class="w3-container">
+    <h3>Theory</h3>
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img class="w3-circle" src="./test1_files/logo2.jpg" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>SCR Performance <span class="w3-opacity w3-medium"></span></h4>
+        <p>SCR perofrmance can be verified from its V-I Characteristics.A V-I Characteristic of SCR (Silicon Controlled Rectifier) is the voltage current characteristics. The current through the SCR varies as the Anode to Cathode terminal voltage and Gate to Cathode terminal voltage is varied. The graphical representation of current through the SCR and voltage across the anode to cathode terminal is known as V-I Characteristics of SCR. To obtain V-I characteristics of SCR, its anode and cathode are connected to the source through the load. The Gate and cathode are fed through a separate source which is meant to provide positive gate current from gate to cathode. The elementary circuit diagram for obtaining V-I characteristics of SCR is shown below.</p><br>
+        <p>Anode and Cathode terminals A & K are connected to variable voltage source HPVS through Load and Gate terminal G is connected to the source LPVS to provide positive gate current through G. Vak and Iak represents the voltage across the anode to cathode terminals and current through the SCR. A plot between Va and Ia is drawn by varying the source voltage E and noting the corresponding current through SCR. This plot gives the V-I characteristics of SCR.</p><br>
+        <img src="./test1_files/scr.jpg" style="max-width:100%;">
+      </div>
+    </div>    
+  </div>
+
+  <div id="component_page" class="w3-container" style="display: none;">
+    <h3>Component List</h3>
+    <div class="w3-row-padding" style="margin:0 -16px">
+      
+      <div  class="w3-twothird"  style="display: block;">
+        
+        <table class="w3-table w3-striped w3-white">
+          <tbody><tr>
+            <td>1</td>
+            <td><a >SCR 2N2573</a><i></i></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a >Resistor 10K Ohm, 3.3K Ohm</a><i></i></td>
+          </tr>
+          
+          <tr>
+            <td>3</td>
+            <td><a >Regulated Power Supply</a><i></i></td>
+          </tr>
+         </tbody>
+      </table>
+      </div>
+      </div>     
+  </div>
+<div id="circuit_page" style="display: none;" class="w3-container">
+    <h3>Procedure</h3>
+    <div class="w3-row-padding" style="margin:0 -16px">
+      
+      <div  class="w3-twothird"  style="display: block;">
+        
+        <table class="w3-table w3-striped w3-white">
+          <tbody><tr>
+            <td>1</td>
+            <td><a >Anode and Cathode terminals A & K are connected to variable voltage source E through Load</a><i></i></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a >Maintain LPVS at fixed voltage to maintain constant current through Gate terminal</a><i></i></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><a >Varry HPVS supply from 0 volt to maximum value</a><i></i></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><a >Note down values of Vak and Iak stepwise with respect to HPVS</a><i></i></td>
+          </tr>
+        
+        </tbody>
+      </table>
+      </div>
+      </div>     
+  </div>
+<div id="simulation_page" style="display: none;" class="w3-container">
+    <h3>Simulation</h3>
+    <div class="w3-row">
+    <div style="background-color: #FFFFFF;">
+      <a class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i><span><strong>Supply Voltage LVPS</strong></span></a>
+      <br>
+     <input type="range" min="0" max="0" value="0" onchange="onloadnew_vbe(this.value);"/>
+     <br>
+    <a  class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i><span id="vl"<strong>LVPS= 0 V</strong></span></a>
+     </div>
+     <br>
+     <div style="background-color: #FFFFFF;">
+      <a  class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i><span id="ig"><strong>Gate Current IG= 0 A</strong></span></a>
+    </div>
+      <br>
+      <div style="background-color: #FFFFFF;">
+      <a class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i><span><strong>Supply Voltage HPVS</strong></span></a>
+     <input type="range" min="0" max="77" value="0" onchange="onloadnew(this.value);"/>
+     <br>
+     <a  class="w3-bar-item w3-button" ><i class="fa fa-sign-out"></i><span id="vh"><strong>HPVS = 0 V</strong></span></a> 
+     </div>          
+     <br>
+     <div style="background-color: #FFFFFF;">
+     <a  class="w3-bar-item w3-button" ><i class="fa fa-sign-out"></i><span id="vs"><strong>VAK = 0 V</strong></span></a> 
+     <a  class="w3-bar-item w3-button" ><i class="fa fa-sign-out"></i><span id="is"><strong>IAK = 0 A</strong></span></a>
+    </div>
+    <div class="chart-container">
+<div id="myPlot" style="width:100%"></div>
+
+    </div>
+    </div>    
+</div>
+
+  <br>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">CALL US ON</h5>
+        <p>Phone : +91-07182235140</p>
+        <p>Email : gp.gondia@gmail.com</p>
+        <p>Website : www.gpgondia.ac.in</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">LOCATION</h5>
+        <p>Government Polytechnic, Gondia</p>
+        <p>Fulchur Peth, Goregaon Road, Gondia. 441601</p>
+        <p>State : Maharashtra</p>
+        <p>Country : India</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">QUICK LINKS</h5>
+        <a href="https://www.aicte-india.org/">AICTE</a><br>
+        <a href="http://www.dtemaharashtra.gov.in/index.html">DTE</a> <br>
+        <a href="https://msbte.org.in/">MSBTE</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>-------</h4>
+    <p>Powered by <a href="" target="_blank">Electronics and Telecommunication Department, Government Polytechnic Gondia</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script type="text/javascript"> 
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+var dash_menu = document.getElementById("dash_menu");
+
+var theory_page1 = document.getElementById("theory_page");
+var component_page1 = document.getElementById("component_page");
+var circuit_page1 = document.getElementById("circuit_page");
+var simulation_page1 = document.getElementById("simulation_page");
+
+var devices = document.getElementById("devices");
+var info = document.getElementById("info");
+var dashboard = document.getElementById("dashboard");
+var switch_state = document.getElementById("switch_state");
+var switch_d = document.getElementById("switch_d");
+var gauge_d = document.getElementById("gauge_d");
+var line_d = document.getElementById("line_d");
+var bar_d = document.getElementById("bar_d");
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+function theory_page(){
+  w3_close();
+if (theory_page1.style.display === 'block') {
+    //profile.style.display = 'none';
+  } else {
+    theory_page1.style.display = 'block';
+    component_page1.style.display = 'none'; 
+        circuit_page1.style.display = 'none'; 
+    simulation_page1.style.display = 'none'; 
+  }
+}
+function component_page(){
+w3_close();
+if (component_page1.style.display === 'block') {
+    //profile.style.display = 'none';
+  } else {
+    theory_page1.style.display = 'none';
+    component_page1.style.display = 'block'; 
+        circuit_page1.style.display = 'none'; 
+    simulation_page1.style.display = 'none'; 
+
+  }
+
+}
+function circuit_page(){
+w3_close();
+if (circuit_page1.style.display === 'block') {
+    //profile.style.display = 'none';
+  } else {
+    theory_page1.style.display = 'none';
+    component_page1.style.display = 'none'; 
+        circuit_page1.style.display = 'block'; 
+    simulation_page1.style.display = 'none'; 
+
+  }
+}
+function simulation_page(){
+w3_close();
+if (simulation_page1.style.display === 'block') {
+    //profile.style.display = 'none';
+  } else {
+    theory_page1.style.display = 'none';
+    component_page1.style.display = 'none'; 
+        circuit_page1.style.display = 'none'; 
+    simulation_page1.style.display = 'block'; 
+
+  }
+}
+
+function switch_div(){
+//switch_d.style.display= "block";
+w3_close();
+if (switch_d.style.display === 'none') {
+    //devices.style.display = 'none';
+    //info.style.display='block';
+    switch_d.style.display= "block";
+  } else {
+  //  switch_d.style.display= "none";
+  }
+
+}
+
+function gauge_div(){
+  w3_close();
+if (gauge_d.style.display === 'none') {
+    //devices.style.display = 'none';
+    //info.style.display='block';
+    gauge_d.style.display= "block";
+  } else {
+ //   gauge_d.style.display= "none";
+  }
+
+}
+function temp_div(){
+  w3_close();
+if (temp_d.style.display === 'none') {
+    //devices.style.display = 'none';
+    //info.style.display='block';
+    temp_d.style.display= "block";
+  } else {
+ //   gauge_d.style.display= "none";
+  }
+
+}
+
+
+function home_page(){
+  w3_close();
+       info.style.display='block';
+       document.getElementById('exp_list_page').style.display="none";
+
+}
+function exp_list_page(){
+  w3_close();
+document.getElementById('exp_list_page').style.display="block";
+       info.style.display='none';
+}
+</script>
+<script>
+  const xArray = [0.0023077,
+0.60637,
+2.2457,
+3.2454,
+4.2449,
+5.2446,
+6.2442,
+7.2438,
+8.2434,
+9.243,
+10.243,
+11.242,
+12.242,
+13.241,
+14.241,
+15.241,
+16.24,
+17.24,
+18.239,
+19.239,
+20.239,
+21.238,
+22.238,
+23.237,
+24.237,
+25.237,
+26.236,
+27.236,
+28.235,
+29.235,
+30.235,
+31.234,
+32.234,
+33.233,
+34.233,
+35.233,
+36.232,
+37.232,
+38.231,
+39.231,
+40.231,
+41.23,
+42.23,
+43.229,
+44.229,
+45.229,
+46.228,
+47.228,
+48.227,
+49.227,
+50.227,
+51.226,
+52.226,
+53.225,
+54.225,
+55.224,
+56.224,
+57.224,
+58.223,
+59.222,
+60.221,
+61.22,
+62.217,
+63.211,
+64.2,
+65.174,
+65.165,
+65.121,
+65.100,
+65.086,
+65.064,
+65.06,
+1.6584,
+0,
+0.4092,
+0.966,
+1.4715,
+1.8458];
+const yArray = [0.0000076923,
+0.00003363,
+0.0000343,
+3.45999999999997E-05,
+3.50999999999999E-05,
+3.54000000000001E-05,
+3.58000000000001E-05,
+0.0000362,
+0.0000366,
+0.000036999999999999,
+0.000036999999999999,
+3.79999999999985E-05,
+3.79999999999985E-05,
+3.89999999999997E-05,
+3.89999999999997E-05,
+3.89999999999997E-05,
+4.00000000000027E-05,
+4.00000000000027E-05,
+4.10000000000004E-05,
+4.10000000000004E-05,
+4.10000000000004E-05,
+4.20000000000016E-05,
+4.20000000000016E-05,
+4.30000000000028E-05,
+4.30000000000028E-05,
+4.30000000000028E-05,
+4.40000000000005E-05,
+4.40000000000005E-05,
+4.50000000000017E-05,
+4.50000000000017E-05,
+4.50000000000017E-05,
+4.59999999999994E-05,
+4.59999999999994E-05,
+4.70000000000042E-05,
+4.70000000000042E-05,
+4.70000000000042E-05,
+4.80000000000018E-05,
+4.80000000000018E-05,
+4.89999999999995E-05,
+4.89999999999995E-05,
+4.89999999999995E-05,
+5.00000000000043E-05,
+5.00000000000043E-05,
+5.10000000000019E-05,
+5.10000000000019E-05,
+5.10000000000019E-05,
+5.19999999999996E-05,
+5.19999999999996E-05,
+5.30000000000044E-05,
+5.30000000000044E-05,
+5.30000000000044E-05,
+0.000054000000000002,
+0.000054000000000002,
+5.49999999999997E-05,
+5.49999999999997E-05,
+5.60000000000045E-05,
+5.60000000000045E-05,
+5.60000000000045E-05,
+5.70000000000022E-05,
+5.79999999999998E-05,
+5.90000000000046E-05,
+6.00000000000023E-05,
+6.30000000000024E-05,
+6.90000000000026E-05,
+7.99999999999983E-05,
+0.000105999999999995,
+0.00129000000000001,
+0.002423,
+0.00266499999999999,
+0.00295,
+0.004372,
+0.00516500000000001,
+0.0707306,
+0.0709808,
+0.073808,
+0.0752808,
+0.0774808,
+0.0796808
+];
+      
+      var vl = document.getElementById("vl");
+      var vs = document.getElementById("vs");
+      var is = document.getElementById("is");
+      var vh= document.getElementById("vh");
+      var ig = document.getElementById("ig");
+
+      var chartdelet = 0 ;
+      var chartid;
+      var chartid1;
+      function onloadnew(val){
+        var val_new=val/2;    /////////r trigerring method
+        var firing_angle_val=(val/2);
+        var xArray1=[0];
+var yArray1=[0];
+
+for (let i = 1; i < val; i++) {
+  xArray1.push(xArray[i]);
+  yArray1.push(yArray[i]);
+   vs.innerHTML="VAK = "+xArray[i]+" V";
+    is.innerHTML="IAK = "+yArray[i]+" A";
+       vh.innerHTML="HPVS = "+val+" V";
+
+}
+  const data = [{
+  x: xArray1,
+  y: yArray1,
+  mode:"lines"
+}];
+
+// Define Layout
+const layout = {
+  xaxis: {range: [0, 70], title: "Voltage across SCR"},
+  yaxis: {range: [0,0.09 ], title: "Current throuhgh SCR"},  
+  title: "VI Characteristic"
+};
+
+// Display using Plotly
+Plotly.newPlot("myPlot", data, layout);
+   }
+
+   function sine(degree) {
+// radians = degrees * PI / 180
+  let x = 15* Math.sin(degree * Math.PI / 180);
+  return x.toFixed(2);   
+}
+function average(degree) {
+// radians = degrees * PI / 180
+  let x = 15*0.318* (1+Math.cos(degree * Math.PI / 180));
+  return x.toFixed(2);   
+}
+   </script>
+</body></html>
